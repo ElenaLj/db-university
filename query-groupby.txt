@@ -1,11 +1,48 @@
 - - - - - - SQL QUERIES - - - - - - 
 ########### GROUP BY ##############
 
+Sintassi: 
+    SELECT column_name(s)
+    FROM table_name
+    WHERE condition
+    GROUP BY column_name(s)
+    ORDER BY column_name(s);
+
+
 1. Contare quanti iscritti ci sono stati ogni anno:
+
+    TABELLA: students
+    COLONNE: id, enrolment_date
+ 
+    SELECT COUNT(`id`) AS `totale_iscritti`, YEAR(`enrolment_date`) AS `anno_iscrizione` 
+    FROM `students` 
+    GROUP BY YEAR(`enrolment_date`)
+    ORDER BY YEAR(`enrolment_date`) DESC;
 
 2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio:
 
-3. Calcolare la media dei voti di ogni appello d'esame:
+    TABELLA: teachers
+    COLONNE: id, office_address
+
+    SELECT COUNT(`id`) AS `numero_docenti`, `office_address` AS `indirizzo_edificio` 
+    FROM `teachers` 
+    GROUP BY `office_address`;
+
+3. Calcolare la media dei voti di ogni appello d'esame: 
+// ovvero calcola la media dei voti in base all'id dell'esame
+
+    TABELLA: exam_student
+    COLONNE: vote, exam_id
+
+    SELECT CAST(AVG(`vote`) AS DECIMAL(4,2)) AS `media_voti`, `exam_id` AS `appello_esame` 
+    FROM `exam_student` 
+    GROUP BY `exam_id`;
 
 4. Contare quanti corsi di laurea ci sono per ogni dipartimento:
 
+    TABELLA: degrees
+    COLONNE: id, department_id
+
+    SELECT `department_id` AS `dipartimento`, COUNT(`id`) AS `totale_corsi_di_laurea` 
+    FROM `degrees` 
+    GROUP BY `department_id`;
