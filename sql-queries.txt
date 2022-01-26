@@ -40,7 +40,7 @@ WHERE `cfu` > 10;
 SELECT * 
 FROM `courses` 
 WHERE `period` = 'I semestre' 
-AND `year` = '1';
+AND `year` = 1;
 
 5. Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020 (21):
 
@@ -66,4 +66,4 @@ FROM `departments`;
 SELECT COUNT(id) 
 AS 'total_missing_phones'  
 FROM `teachers` 
-WHERE `phone` IS NOT NULL;
+WHERE `phone` IS NULL;
