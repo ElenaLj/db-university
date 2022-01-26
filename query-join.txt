@@ -42,6 +42,21 @@
     WHERE `departments`.`id` = 7;
 
 3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44):
+// estrapolare dalla tabella courses tutti i corsi il cui docente ha id 44
+
+    TABELLA: course_teacher
+    JOIN:  courses + teachers
+    COLONNE: teacher_id (from degrees) + id (from departments)
+
+    SELECT `course_teacher`.`teacher_id` AS `id_docente`, 
+    `teachers`.`name` AS `nome_docente`, 
+    `teachers`.`surname` AS `cognome_docente`, 
+    `courses`.`name` AS `corso`, 
+    `courses`.`period` AS `semestre` 
+    FROM `course_teacher` 
+    INNER JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id` 
+    INNER JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id` 
+    WHERE `teachers`.`id` = 44;
 
 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome:
 
